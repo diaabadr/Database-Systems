@@ -1,6 +1,6 @@
 Projects
 
-- [ ] [Buffer Pool Manager](https://15445.courses.cs.cmu.edu/fall2020/project1/)
+- [x] [Buffer Pool Manager](https://15445.courses.cs.cmu.edu/fall2020/project1/)
 - [ ] [B+Tree Index](https://15445.courses.cs.cmu.edu/fall2020/project2/)
 - [ ] [Query Execution](https://15445.courses.cs.cmu.edu/fall2020/project3/)
 - [ ] [Concurrency Control](https://15445.courses.cs.cmu.edu/fall2020/project4/)
