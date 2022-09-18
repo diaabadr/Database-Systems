@@ -11,15 +11,15 @@ projects can be auto-graded on [gradescope](https://www.gradescope.com/courses/1
 
 Progress
 
-- [ ] Lecture #01: Course Introduction and the Relational Model
+- [x] Lecture #01: Course Introduction and the Relational Model
 
-- [ ] Lecture #02: Advanced SQL
+- [x] Lecture #02: Advanced SQL
 
-- [ ] Lecture #03: Database Storage I
+- [x] Lecture #03: Database Storage I
 
-- [ ] Lecture #04: Database Storage II
+- [x] Lecture #04: Database Storage II
 
-- [ ] Lecture #05: Buffer Pools
+- [x] Lecture #05: Buffer Pools
 
 - [x] Lecture #06: Hash Tables
 
