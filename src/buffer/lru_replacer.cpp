@@ -29,17 +29,16 @@ namespace bustub
 
         if (frames.empty())
             return false;
-
+        auto page_frame=frames.front();
+        frames.pop_front();
         auto frame = frames_map.find(frames.front());
 
         if (frame != frames_map.end())
         {
             frames_map.erase(frame);
-            *frame_id = frames.front();
-            frames.pop_back();
+            *frame_id = page_frame;
             return true;
         }
-        else
             return false;
     }
 
@@ -65,12 +64,13 @@ namespace bustub
          This method should add the frame containing the unpinned page to the
          LRUReplacer*/
         const std::lock_guard<mutex_t> guard(mutex);
-
+if (frames_map.size() >= capacity) {
+    return;
+  }
         auto frame=frames_map.find(frame_id);
-        if(frame==frames_map.end())
+        if(frame!=frames_map.end())
         return;
-        if(frames_map.size()>=capacity)
-        return;
+
         frames.push_back(frame_id);
         auto it=frames.end();
         it--;
