@@ -113,8 +113,8 @@ bool BufferPoolManager::FlushPageImpl(page_id_t page_id) {
      * if page is not found in page table, return false
      * NOTE: make sure page_id != INVALID_PAGE_ID
      */
-    if(page_id==INVALID_PAGE_ID)
-  return false;
+     assert(page_id != INVALID_PAGE_ID);
+    
   const std::lock_guard<std::mutex> guard(latch_);
   auto page_frame=page_table_.find(page_id);
   
@@ -137,16 +137,16 @@ Page *BufferPoolManager::NewPageImpl(page_id_t *page_id) {
   // 4.   Set the page ID output parameter. Return a pointer to P.
 
    const std::lock_guard<std::mutex> guard(latch_);
-   bool flage=false;
+   bool flage=true;
    for(size_t i=0;i<pool_size_;i++)
    {
     if(pages_[i].GetPinCount()<=0)
     {
-    flage=true;
+    flage=false;
     break;
     }
    }
-   if(!flage)
+   if(flage)
    return nullptr;
    frame_id_t frame_id;
    if(free_list_.empty())
@@ -155,9 +155,11 @@ Page *BufferPoolManager::NewPageImpl(page_id_t *page_id) {
     if(!check)
     return nullptr;
    }
+    else
+    {
    frame_id=free_list_.front();
    free_list_.pop_front();
-
+    }
    auto frame=&pages_[frame_id];
    if(frame->IsDirty())
    {
@@ -167,9 +169,11 @@ Page *BufferPoolManager::NewPageImpl(page_id_t *page_id) {
    page_table_.erase(frame->GetPageId());
    auto new_id=disk_manager_->AllocatePage();
    frame->page_id_=new_id;
+     frame->pin_count_++;
+      frame->ResetMemory();
    replacer_->Pin(frame_id);
-   frame->pin_count_++;
-   frame->ResetMemory();
+  
+ 
 
    page_table_.insert({frame->GetPageId(),frame_id});
 
