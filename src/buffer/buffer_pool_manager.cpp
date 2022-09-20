@@ -94,15 +94,16 @@ bool BufferPoolManager::UnpinPageImpl(page_id_t page_id, bool is_dirty) {
 
  auto page_frame=page_table_.find(page_id);
  if(page_frame==page_table_.end())
- return false;
+ return true;
  auto page=&pages_[page_frame->second];
+    auto pin_count=page->GetPinCount();
  page->pin_count_--;
  page->is_dirty_|=is_dirty;
  if(!page->GetPinCount())
  {
   replacer_->Unpin(page_frame->second);
  }
- return page->GetPinCount()+1>0;
+ return pin_count>0;
 }
 
 bool BufferPoolManager::FlushPageImpl(page_id_t page_id) {
@@ -112,10 +113,11 @@ bool BufferPoolManager::FlushPageImpl(page_id_t page_id) {
      * if page is not found in page table, return false
      * NOTE: make sure page_id != INVALID_PAGE_ID
      */
+    if(page_id==INVALID_PAGE_ID)
+  return false;
   const std::lock_guard<std::mutex> guard(latch_);
   auto page_frame=page_table_.find(page_id);
-  if(page_id==INVALID_PAGE_ID)
-  return false;
+  
   if(page_frame==page_table_.end())
   return false;
 
