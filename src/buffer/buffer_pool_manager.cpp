@@ -199,7 +199,10 @@ return true;
 auto page=&pages_[page_frame->second];
 if(page->GetPinCount()!=0)
 return false;
+    
+
 page_table_.erase(page_frame);
+    disk_manager_->DeallocatePage(page_id);
 page->ResetMemory();
 page->page_id_=INVALID_PAGE_ID;
 page->pin_count_=0;
@@ -211,7 +214,7 @@ return true;
 
 void BufferPoolManager::FlushAllPagesImpl() {
   // You can do it!
-
+  const std::lock_guard<std::mutex> guard(latch_);
   for(size_t i=0;i<pool_size_;i++)
   {
     if(pages_[i].GetPageId()!=INVALID_PAGE_ID&&pages_[i].IsDirty())
