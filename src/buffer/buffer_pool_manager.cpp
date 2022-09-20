@@ -200,7 +200,10 @@ auto page=&pages_[page_frame->second];
 if(page->GetPinCount()!=0)
 return false;
     
-
+ if (page->IsDirty()) {
+    disk_manager_->WritePage(page->GetPageId(), page->GetData());
+    page->is_dirty_ = false;
+  }
 page_table_.erase(page_frame);
     disk_manager_->DeallocatePage(page_id);
 page->ResetMemory();
