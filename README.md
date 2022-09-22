@@ -23,7 +23,7 @@ Progress
 
 - [x] Lecture #06: Hash Tables
 
-- [ ] Lecture #07: Trees Indexes I
+- [x] Lecture #07: Trees Indexes I
 
 - [ ] Lecture #08: Trees Indexes II
 

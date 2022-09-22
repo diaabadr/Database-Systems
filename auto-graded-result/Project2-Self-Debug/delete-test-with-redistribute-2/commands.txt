@@ -1,7 +1,0 @@
-5 5
-f insert.txt
-g after-insert-tree.dot
-d 6
-d 7
-g after-delete-6-7-tree.dot
-q

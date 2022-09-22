@@ -122,7 +122,6 @@ bool BufferPoolManager::FlushPageImpl(page_id_t page_id) {
   return false;
 
   auto page=&pages_[page_frame->second];
-  if(page->IsDirty())
     disk_manager_->WritePage(page->GetPageId(),page->GetData());
     page->is_dirty_=false;
     return true;
