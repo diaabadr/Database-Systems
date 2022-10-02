@@ -29,7 +29,7 @@ Progress
 
 - [x] Lecture #09: Index Concurrency Control
 
-- [ ] Lecture #10: Sorting + Aggregations
+- [x] Lecture #10: Sorting + Aggregations
 
 - [ ] Lecture #11: Joins Algorithms
 
