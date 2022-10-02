@@ -25,7 +25,7 @@ Progress
 
 - [x] Lecture #07: Trees Indexes I
 
-- [ ] Lecture #08: Trees Indexes II
+- [x] Lecture #08: Trees Indexes II
 
 - [ ] Lecture #09: Index Concurrency Control
 
