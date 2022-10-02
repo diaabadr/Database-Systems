@@ -27,7 +27,7 @@ Progress
 
 - [x] Lecture #08: Trees Indexes II
 
-- [ ] Lecture #09: Index Concurrency Control
+- [x] Lecture #09: Index Concurrency Control
 
 - [ ] Lecture #10: Sorting + Aggregations
 
