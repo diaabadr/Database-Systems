@@ -31,9 +31,9 @@ Progress
 
 - [x] Lecture #10: Sorting + Aggregations
 
-- [ ] Lecture #11: Joins Algorithms
+- [x] Lecture #11: Joins Algorithms
 
-- [ ] Lecture #12: Query Execution I
+- [x] Lecture #12: Query Execution I
 
 - [ ] Lecture #13: Query Execution II
 
